@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+<title>Page Title</title>
+<style>
+body {
+  background-color: gray;
+}
+#flashcard {
+  background-color: darkblue;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  font-family: Montserrat;
+  font-size: 60px;
+  justify-content: center;
+  min-height: 300px;
+  width: 500px;
+  padding: 5% 5%;
+}
+#bottom {
+  color: white;
+  font-family: Montserrat;
+  justify-content: center;
+}
+
+button {
+  height: 40px;
+}
+
+a:hover {
+ cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+
+<script>
+var word = 0;
+var wordList = ["a","b","c"];
+var range = wordList.length;
+
+function changeWord(){
+ var x  = prompt("Enter a number between 1-" + range);
+}
+
+function flipCard(){
+	document.getElementById("flashcard").style.color = "red";
+}
+
+</script>
+
+<center>
+
+<div id="flashcard" onclick="flipCard()">
+<p id="definition"></p>
+</div>
+
+<div id="bottom">
+<p>
+<a onclick="left()">🡸</a>
+<a id="wordNum" onclick="changeWord()"></a>
+<a onclick="right()">🡺</a>
+</p>
+</div>
+</center>
+
+<script>
+document.getElementById("definition").innerHTML = wordList[word];
+document.getElementById("wordNum").innerHTML = word+1 + "/" + wordList.length;
+
+function left(){
+	if (word > 0){
+      word--;
+    } else {
+      word = wordList.length-1;
+    }
+    updateWord();
+}
+
+function right(){
+	if (word < wordList.length-1){
+      word++;
+    } else {
+      word = 0;
+    }
+    updateWord();
+}
+
+function updateWord(){
+  document.getElementById("definition").innerHTML = wordList[word];
+  document.getElementById("wordNum").innerHTML = word+1 + "/" + wordList.length;
+
+}
+</script>
+
+</body>
+</html>
