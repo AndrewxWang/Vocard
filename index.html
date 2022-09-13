@@ -29,6 +29,10 @@ body {
  cursor:pointer;
 }
 
+#display {
+  visibility: hidden;
+}
+
 #bottom {
   color: white;
   font-family: Montserrat;
@@ -54,7 +58,10 @@ a:hover {
 <script>
 var word = 0;
 var flipped = false;
-var wordList = ["a","b","c"];
+var wordList = [
+	["a","b"],
+    ["c","d"]
+];
 var range = wordList.length;
 
 function changeWord(){
@@ -67,20 +74,33 @@ function changeWord(){
 
 function flipCard(){
 	if (!flipped){
-      document.getElementById("flashcard").style.color = "red";
+      document.getElementById("vocab").innerHTML = wordList[word][1];
       flipped = true;
     } else {
-      document.getElementById("flashcard").style.color = "white";
+      document.getElementById("vocab").innerHTML = wordList[word][0];
       flipped = false;
     }
+}
+
+function makeCards(){
+  var x = document.getElementById("vocabList").value;
+  document.getElementById("demo").innerHTML = x;
+  
+  document.getElementById("display").style.visibility = "visible";
 }
 
 </script>
 
 <center>
 
+<textarea id="vocabList" col="15" placeholder="word, definition."></textarea><br>
+<button onclick="makeCards()">submit</button>
+
+<p id="demo"></p>
+
+<div id="display">
 <div id="flashcard" onclick="flipCard()">
-<p id="definition"></p>
+<p id="vocab"></p>
 </div>
 
 <div id="bottom">
@@ -90,10 +110,11 @@ function flipCard(){
 <a onclick="right()">🡺</a>
 </p>
 </div>
+</div>
 </center>
 
 <script>
-document.getElementById("definition").innerHTML = wordList[word];
+document.getElementById("vocab").innerHTML = wordList[word][0];
 document.getElementById("wordNum").innerHTML = word+1 + "/" + wordList.length;
 
 function left(){
@@ -115,7 +136,7 @@ function right(){
 }
 
 function updateWord(){
-  document.getElementById("definition").innerHTML = wordList[word];
+  document.getElementById("vocab").innerHTML = wordList[word][0];
   document.getElementById("wordNum").innerHTML = word+1 + "/" + wordList.length;
 
 }
