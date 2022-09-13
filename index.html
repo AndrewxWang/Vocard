@@ -10,6 +10,7 @@
 body {
   background-color: gray;
 }
+
 #flashcard {
   background-color: darkblue;
   border-radius: 5px;
@@ -18,10 +19,16 @@ body {
   font-family: Montserrat;
   font-size: 60px;
   justify-content: center;
-  min-height: 300px;
+  height: 300px;
   width: 500px;
   padding: 5% 5%;
+  user-select: none;
 }
+
+#flashcard:hover {
+ cursor:pointer;
+}
+
 #bottom {
   color: white;
   font-family: Montserrat;
@@ -30,6 +37,10 @@ body {
 
 button {
   height: 40px;
+}
+
+a {
+ user-select: none;
 }
 
 a:hover {
@@ -42,15 +53,26 @@ a:hover {
 
 <script>
 var word = 0;
+var flipped = false;
 var wordList = ["a","b","c"];
 var range = wordList.length;
 
 function changeWord(){
  var x  = prompt("Enter a number between 1-" + range);
+ if (x > 0 && x < wordList.length+1) {
+ 	word = x-1;
+    updateWord();
+ }
 }
 
 function flipCard(){
-	document.getElementById("flashcard").style.color = "red";
+	if (!flipped){
+      document.getElementById("flashcard").style.color = "red";
+      flipped = true;
+    } else {
+      document.getElementById("flashcard").style.color = "white";
+      flipped = false;
+    }
 }
 
 </script>
