@@ -42,6 +42,10 @@ body {
   justify-content: center;
 }
 
+#enterVocab {
+  visibility: visble;
+}
+
 button {
   height: 40px;
 }
@@ -84,7 +88,6 @@ function flipCard(){
 }
 
 function makeCards(){
-  document.getElementById("enterVocab").style.visibility = "none";
   vocabList = [];
   
   var input = document.getElementById("vocabList").value;
@@ -110,13 +113,14 @@ function makeCards(){
 
   updateWord();
   document.getElementById("display").style.visibility = "visible";
+  document.getElementById("enterVocab").style.visibility = "hidden";
 }
 
 </script>
 
 <center>
 
-<div class="enterVocab">
+<div id="enterVocab">
 <textarea id="vocabList" col="15" placeholder="word, definition."></textarea><br>
 <button onclick="makeCards()">submit</button>
 </div>
