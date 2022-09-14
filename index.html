@@ -84,6 +84,7 @@ function flipCard(){
 }
 
 function makeCards(){
+  document.getElementById("enterVocab").style.visibility = "none";
   vocabList = [];
   
   var input = document.getElementById("vocabList").value;
@@ -115,10 +116,10 @@ function makeCards(){
 
 <center>
 
+<div class="enterVocab">
 <textarea id="vocabList" col="15" placeholder="word, definition."></textarea><br>
 <button onclick="makeCards()">submit</button>
-
-<p id="demo"></p>
+</div>
 
 <div id="display">
 <div id="flashcard" onclick="flipCard()">
