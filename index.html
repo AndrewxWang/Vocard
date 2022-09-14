@@ -15,7 +15,6 @@ body {
   background-color: darkblue;
   border-radius: 5px;
   color: white;
-  display: flex;
   font-family: Montserrat;
   font-size: 60px;
   justify-content: center;
@@ -23,6 +22,10 @@ body {
   width: 500px;
   padding: 5% 5%;
   user-select: none;
+}
+
+#flashcard p {
+	transform: translateY(50%);
 }
 
 #flashcard:hover {
@@ -58,10 +61,8 @@ a:hover {
 <script>
 var word = 0;
 var flipped = false;
-var wordList = [
-	["a","b"],
-    ["c","d"]
-];
+var wordList = [];
+
 var range = wordList.length;
 
 function changeWord(){
@@ -83,9 +84,28 @@ function flipCard(){
 }
 
 function makeCards(){
-  var x = document.getElementById("vocabList").value;
-  document.getElementById("demo").innerHTML = x;
-  
+  var input = document.getElementById("vocabList").value;
+  var count = 0;
+
+  while (input.length > 0){
+    var getComma = input.indexOf(",");
+    var getPeriod = input.indexOf(".");
+        
+    if (input.indexOf(",") !== -1 && input.indexOf(".") !== -1){
+      wordList.push([input.substring(0, getComma), input.substring(getComma+1, getPeriod)]);
+    }
+
+    count++;
+    input = input.substring(getPeriod+1);
+    console.log(count + " " + input);
+    
+    if(input.length === 0){
+      break;
+    }
+  }
+  console.log(wordList[0].toLocaleString());
+
+  updateWord();
   document.getElementById("display").style.visibility = "visible";
 }
 
@@ -137,6 +157,7 @@ function right(){
 
 function updateWord(){
   document.getElementById("vocab").innerHTML = wordList[word][0];
+  flipped = false;
   document.getElementById("wordNum").innerHTML = word+1 + "/" + wordList.length;
 
 }
