@@ -101,7 +101,7 @@ function makeCards(){
     input = input.substring(getPeriod+1);
     console.log(count + " " + input);
     
-    if(input.length === 0 || input.substring(getPeriod+1) != "/^ *$/"){
+    if(input.length === 0 || count > 500){
       break;
     }
   }
